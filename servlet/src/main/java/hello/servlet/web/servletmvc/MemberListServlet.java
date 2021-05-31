@@ -21,6 +21,7 @@ public class MemberListServlet extends HttpServlet {
         List<Member> members = memberRepository.findAll();
         request.setAttribute("members",members);
 
+        //반복 됨
         String viewPath="/WEB-INF/views/members.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
         dispatcher.forward(request,response);
