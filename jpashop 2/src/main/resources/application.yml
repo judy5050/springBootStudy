@@ -19,5 +19,5 @@ logging:
     #    org.hibernate: debug
     org.hibernate.stat: debug
     org.hibernate.SQL: debug
-    org.hibernate.type: trace
+#    org.hibernate.type: trace
 #    org.hibernate.type: trace
