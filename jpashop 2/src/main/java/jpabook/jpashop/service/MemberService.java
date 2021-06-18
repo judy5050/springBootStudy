@@ -46,6 +46,15 @@ public class MemberService {
     }
 
     /**
+     * jpal 회원 전체 조회
+     */
+    public List<Member> findMemberJpql(){
+
+        return memberRepository.findMembersWithJpql();
+
+    }
+
+    /**
      * 회원 단건 조회
      */
     public Member findOne(Long memberId){

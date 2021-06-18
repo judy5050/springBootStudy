@@ -84,6 +84,14 @@ public class MemberApiController {
 
     }
 
+    /**
+     * 회원 조회 jpal
+     */
+    @GetMapping("/test")
+    public List<Member>members(){
+        return memberService.findMemberJpql();
+    }
+
     @GetMapping("/api/v2/members")
     public Result memberV2(){
         List<Member> findMembers=memberService.findMembers();

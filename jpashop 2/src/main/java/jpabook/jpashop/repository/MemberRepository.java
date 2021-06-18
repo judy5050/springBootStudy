@@ -35,4 +35,8 @@ public class MemberRepository {
                 .getResultList();
 
     }
+
+    public List<Member> findMembersWithJpql() {
+        return  em.createQuery("select m from Member m join m.orders",Member.class).getResultList();
+    }
 }
