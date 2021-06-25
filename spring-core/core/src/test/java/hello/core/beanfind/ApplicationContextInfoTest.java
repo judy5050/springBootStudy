@@ -17,6 +17,8 @@ public class ApplicationContextInfoTest {
             Object bean = ac.getBean(beanDefinitionName);
             System.out.println("name = " + beanDefinitionName +" object= "+bean);
         }
+        Object memberService = ac.getBean("memberService");
+        System.out.println("memberService = " + memberService);
     }
 
     @Test
