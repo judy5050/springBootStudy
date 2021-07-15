@@ -104,4 +104,12 @@ public class MappingController {
         return "ok";
     }
 
+    @GetMapping(value = "/mapping-produce", produces = "text/html")
+    public String mappingProducestmp() {
+        log.info("mappingProduces");
+        return "ok";
+    }
+
+
+
 }

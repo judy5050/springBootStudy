@@ -4,6 +4,7 @@ package hello.springmvc.basic.request;
 import hello.springmvc.basic.HelloData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,7 +53,7 @@ public class RequestParamController {
     }
     @ResponseBody
     @RequestMapping("/request-param-v4")
-    public String requestParamV4( String username,int memberAge) {
+    public String requestParamV4( String username,Integer memberAge) {
         log.info("username={},age={}", username, memberAge);
 
         return "ok";
