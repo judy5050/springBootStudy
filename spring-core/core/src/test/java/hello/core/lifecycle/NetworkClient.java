@@ -5,6 +5,7 @@ import org.springframework.beans.factory.InitializingBean;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.awt.desktop.ScreenSleepEvent;
 
 public class NetworkClient  {
 
@@ -15,7 +16,6 @@ public class NetworkClient  {
 
 
     }
-
     public void setUrl(String url) {
         this.url = url;
     }
@@ -33,12 +33,14 @@ public class NetworkClient  {
         System.out.println("close"+url);
     }
 
+
     @PostConstruct
     public void init(){
         System.out.println("NetworkClient.init");
         connect();
         call("초기화 연결 메시지 ");
     }
+
 
     @PreDestroy
     public void close(){
@@ -56,8 +58,8 @@ public class NetworkClient  {
 //        connect();
 //        call("초기화 연결 메시지 ");
 //    }
-
-
+//
+//
 //    @Override
 //    public void destroy() throws Exception {
 //        System.out.println("NetworkClient.destroy");
