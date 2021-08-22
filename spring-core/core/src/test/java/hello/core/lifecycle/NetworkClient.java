@@ -12,11 +12,13 @@ public class NetworkClient  {
     private String url;
 
     public NetworkClient() {
+
         System.out.println("생성자 호출,url = "+url);
 
 
     }
     public void setUrl(String url) {
+        System.out.println("setter");
         this.url = url;
     }
     //서비스 시작시 호출

@@ -1,16 +1,13 @@
-package hello.core;
+package study.datajpa;
 
-
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CoreApplication {
+public class DataJpaApplication {
 
 	public static void main(String[] args) {
-
-		SpringApplication.run(CoreApplication.class, args);
+		SpringApplication.run(DataJpaApplication.class, args);
 	}
 
 }

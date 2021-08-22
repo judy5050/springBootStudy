@@ -32,6 +32,25 @@ public class ConfigurationSingletonTest {
     }
 
     @Test
+    void test(){
+        AnnotationConfigApplicationContext ac=new AnnotationConfigApplicationContext(AppConfig.class);
+
+        MemberServiceImpl memberService1 = ac.getBean("memberService", MemberServiceImpl.class);
+        MemberServiceImpl memberService2 = ac.getBean("memberService", MemberServiceImpl.class);
+
+
+        MemberRepository memberRepository1 = memberService1.getMemberRepository();
+        MemberRepository memberRepository2 = memberService2.getMemberRepository();
+
+        System.out.println("memberService1  = " + memberService1);
+        System.out.println("memberService2  = " + memberService2);
+        System.out.println("memberService -> memberRepository1 = " + memberRepository1);
+        System.out.println("memberService -> memberRepository2 = " + memberRepository2);
+//        Assertions.assertThat(memberRepository1).isSameAs(memberRepository2);
+
+    }
+
+    @Test
     void configurationDeep(){
         ApplicationContext ac=new AnnotationConfigApplicationContext(AppConfig.class);
         AppConfig bean=ac.getBean(AppConfig.class);

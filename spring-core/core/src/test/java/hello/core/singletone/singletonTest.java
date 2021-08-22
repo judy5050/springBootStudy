@@ -1,6 +1,7 @@
 package hello.core.singletone;
 
 import hello.core.AppConfig;
+import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
 import org.assertj.core.api.Assertions;
@@ -49,6 +50,11 @@ public class singletonTest {
         //1 조회 :호출할 때 마다 객체를 생성
         MemberService memberService1=ac.getBean("memberService",MemberService.class);
         MemberService memberService2=ac.getBean("memberService",MemberService.class);
+        MemberRepository memberRepository1=ac.getBean("memberRepository",MemberRepository.class);
+        MemberRepository memberRepository2=ac.getBean("memberRepository",MemberRepository.class);
+        System.out.println(memberRepository1+" "+memberRepository2);
+        AppConfig bean = ac.getBean(AppConfig.class);
+        System.out.println(bean);
 
         //참조값이 같은  것을 확인
         System.out.println("memberService1 = " + memberService1);
