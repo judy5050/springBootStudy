@@ -6,9 +6,12 @@ import hello.core.member.Member;
 import hello.core.member.MemberService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+
 public class AutoAppConfigTest {
+
 
     @Test
     void basicScan(){
@@ -24,6 +27,8 @@ public class AutoAppConfigTest {
 //        for (String beanDefinitionName : beanDefinitionNames) {
 //            System.out.println("beanDefinitionName = " + beanDefinitionName);
 //        }
+
+
         MemberService memberService=ac.getBean(MemberService.class);
         Assertions.assertThat(memberService).isInstanceOf(MemberService.class);
 

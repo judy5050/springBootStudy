@@ -57,7 +57,7 @@ public class singletonTest {
         System.out.println(bean);
 
         //참조값이 같은  것을 확인
-        System.out.println("memberService1 = " + memberService1);
+        System.out.println("memberService1 = " + memberService1.getClass());
         System.out.println("memberService2 = " + memberService2);
 
         //memberService != memberService2
