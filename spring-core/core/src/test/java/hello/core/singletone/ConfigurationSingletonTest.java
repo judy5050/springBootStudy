@@ -23,7 +23,7 @@ public class ConfigurationSingletonTest {
         MemberRepository memberRepository1 = memberService.getMemberRepository();
         MemberRepository memberRepository2 = orderService.getMemberRepository();
 
-        System.out.println("memberService -> memberRepository1 = " + memberRepository1);
+        System.out.println("memberService -> memberRepository1 = " + memberRepository1.getClass());
         System.out.println("orderService -> memberRepository2 = " + memberRepository2);
         System.out.println("memberRepository = " + memberRepository);
 

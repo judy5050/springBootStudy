@@ -13,6 +13,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class AutoAppConfigTest {
 
 
+
     @Test
     void basicScan(){
 
@@ -29,8 +30,13 @@ public class AutoAppConfigTest {
 //        }
 
 
+        String[] beanDefinitionNames = ac.getBeanDefinitionNames();
+        for (String beanDefinitionName : beanDefinitionNames) {
+            System.out.println("beanDefinitionName = " + beanDefinitionName);
+
+        }
         MemberService memberService=ac.getBean(MemberService.class);
         Assertions.assertThat(memberService).isInstanceOf(MemberService.class);
-
+        System.out.println("memberService = " + memberService.getClass());
     }
 }

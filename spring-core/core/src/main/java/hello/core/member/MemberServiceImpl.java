@@ -3,9 +3,11 @@ package hello.core.member;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @Data
 @Component
+
 public class MemberServiceImpl implements MemberService{
 
     private  MemberRepository memberRepository;
