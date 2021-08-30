@@ -8,7 +8,10 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.DataJpaApplication;
 import study.datajpa.entity.Member;
+import study.datajpa.entity.Team;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +23,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class MemberJpaRepositoryTest {
 
     @Autowired MemberJpaRepository memberJpaRepository;
-
+    //동일 트랜잭션이면, 같은 엔티티 메니저를 사용함
+    @PersistenceContext
+    EntityManager em;
+    @Autowired TeamRepository teamRepository;
     @Test
     public void testMember(){
         System.out.println("memberJpaRepository = " + memberJpaRepository.getClass());
@@ -90,6 +96,78 @@ class MemberJpaRepositoryTest {
         List<Member> result = memberJpaRepository.findByUsername("AAA");
         Member findMember = result.get(0);
         assertThat(findMember).isEqualTo(m1);
+    }
+
+    @Test
+    public void paging(){
+        //given
+        memberJpaRepository.save(new Member("member1",10));
+        memberJpaRepository.save(new Member("member2",10));
+        memberJpaRepository.save(new Member("member3",10));
+        memberJpaRepository.save(new Member("member4",10));
+        memberJpaRepository.save(new Member("member5",10));
+
+        int age=10;
+        int offset=1;
+        int limit=3;
+
+        //when
+        List<Member> members = memberJpaRepository.findByPage(age, offset, limit);
+        long totalCount = memberJpaRepository.totalCount(age);
+
+        //페이지 계산 공식 적용...
+        //totalPage= totalCount/size ...
+        //최초 페이지...
+
+        //then
+        assertThat(members.size()).isEqualTo(3);
+        assertThat(totalCount).isEqualTo(5);
+    }
+
+    @Test
+    public void bulkUpdate(){
+        //given
+        memberJpaRepository.save(new Member("member1",10));
+        memberJpaRepository.save(new Member("member1",19));
+        memberJpaRepository.save(new Member("member1",20));
+        memberJpaRepository.save(new Member("member1",21));
+        memberJpaRepository.save(new Member("member1",40));
+
+        //when
+        int resultCount = memberJpaRepository.bulkAgePlus(20);
+        em.flush();
+        em.clear();
+
+        //then
+        assertThat(resultCount).isEqualTo(3);
+
+    }
+
+    @Test
+    public void findMemberLazy(){
+        //given
+        //member1-> teamA
+        //member2-> teamB
+
+        Team teamA=new Team("teamA");
+        Team teamB = new Team("teamB");
+        teamRepository.save(teamA);
+        teamRepository.save(teamB);
+        Member member1 = new Member("member1", 10, teamA);
+        Member member2 = new Member("member2", 10, teamB);
+        memberJpaRepository.save(member1);
+        memberJpaRepository.save(member2);
+
+        em.flush();
+        em.clear();
+
+        //when
+        //select Member
+        List<Member>members=memberJpaRepository.findAll();
+        for (Member member : members) {
+            System.out.println("member.getUsername() = " + member.getUsername());
+            System.out.println("member.getTeam().getName() = " + member.getTeam().getName());
+        }
     }
 
 }
