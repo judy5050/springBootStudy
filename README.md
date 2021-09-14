@@ -62,4 +62,8 @@
         * fetch join을 간단하게 사용할 수 있도록 만들어진 기능
         * 쿼리메소드 기능에서 메소드 이름으로 쿼리를 생상할때, fetch join 을 사용하고 싶다면 ? @EntityGraph를 사용
         ~~~
+## Spring MVC
+ - 스프링 MVC구조파악
+    - 서블릿을 통해 스프링 MVC구조와 동일한 구조를 만들어봄
+    - DispatcherServlet,핸들러 매핑, 핸들러 어댑터, 뷰 리졸버, 뷰 사용이유와 구조 파악  
       
